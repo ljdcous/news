@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.genew.com.cn/Admin/Design/Edition.html?type=2 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 Dec 2024 06:41:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <title>Edition(版本过低提示)</title>
+    <link href="css/Edition.css" rel="stylesheet" />
+    <script type="text/javascript" src="../..//xiniu/js/jq/jquery-3.6.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {// 初始化内容       
+            if (location.href.indexOf("type=1") >= 0) {
+                $("#ahref").attr("href", "Switch_b.html");
+            } else {
+                $("#ahref").attr("href", "Switch.html");
+            }
+		var userAgent = navigator.userAgent;
+		var isOpera = userAgent.indexOf("Opera") > -1;
+            if (isOpera) { //判断是否Opera浏览器               
+                $("#idversion").html("Opera");
+            } else if (userAgent.indexOf("Firefox") > -1) {
+                $("#idversion").html("Firefox");
+            } else if (userAgent.indexOf("Chrome") > -1) {
+                $("#idversion").html("Chrome");
+            } else if (userAgent.indexOf("Safari") > -1) {
+                $("#idversion").html("Safari");
+            } else if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) { //IE10及以下
+				var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+                reIE.test(userAgent);
+                var fIEVersion = parseFloat(RegExp["$1"]);
+				if(fIEVersion == 10){
+					$("#idversion").html("IE10版本");
+				}
+				else if(fIEVersion == 9){
+					$("#idversion").html("IE9版本");
+				}
+				else if(fIEVersion == 8){
+					$("#idversion").html("IE8版本");
+				}
+				else if(fIEVersion == 7){
+					$("#idversion").html("IE7及以下版本");
+				}
+            } else if ((/Trident\/7\./).test(userAgent)) {
+                var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+				$("#idversion").html("IE11版本");
+            }else if(userAgent.indexOf("Edge") > -1){
+				$("#idversion").html("Edge");
+			};
+
+    });
+
+    </script>
+</head>
+<body>
+	<div id="Edition" class="Edition">
+		<div class="Edition_img">
+			<img src="/img/toolbox/ICOn/iconversion.png" alt="">
+		</div>
+		<div class="Edition_text">
+			<p>
+				温馨提醒
+			</p>
+		</div>
+		<div class="Edition_text2">
+			<p>
+				系统检测到你当前的浏览器为 <span class="text_c1" id="idversion">IE8版本</span>，此版本对最新的HTML5兼容性不够完美，<br/>
+
+                为了达到更好的浏览体验，建议你使用以下浏览器（若你使用的双核浏览器，请切换至极速模式，<a style="color:#0000BF;" id="ahref" href="Switch.html">如何切换？</a>）
+			</p>
+		</div>
+		<div class="Edition_Browser">
+			<ul>
+				<li>
+					<p>推荐浏览器:</p>
+				</li>
+				<li>
+					<p><img src="/img/toolbox/ICOn/iconchrome.png" alt="谷歌浏览器"></p>
+					<p class="p2">谷歌浏览器</p>
+					<p><a href="https://www.google.cn/intl/zh-CN/chrome/">官方下载</a></p>
+				</li>
+				<li>
+					<p><img src="/img/toolbox/ICOn/iconqqbrower.png" alt="QQ浏览器"></p>
+					<p class="p2">QQ浏览器</p>
+					<p><a href="https://browser.qq.com/?adtag=SEM170314027">官方下载</a></p>
+				</li>
+				<li>
+					<p><img src="/img/toolbox/ICOn/icon360.png" alt="360浏览器"></p>
+					<p class="p2">360浏览器</p>
+					<p><a href="http://browser.360.cn/">官方下载</a></p>
+				</li>
+				<li>
+					<p><img src="/img/toolbox/ICOn/iconfirefox.png" alt="火狐浏览器"></p>
+					<p class="p2">火狐浏览器</p>
+					<p><a href="http://www.firefox.com.cn/">官方下载</a></p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+
+<!-- Mirrored from www.genew.com.cn/Admin/Design/Edition.html?type=2 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 Dec 2024 06:41:11 GMT -->
+</html>

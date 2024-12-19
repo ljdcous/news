@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from www.genew.com.cn/ueditor/dialogs/map/show.htm?center=113.95314744575298,22.537560022740102 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 Dec 2024 06:51:33 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="keywords" content="百度地图,百度地图API，百度地图自定义工具，百度地图所见即所得工具" />
+    <meta name="description" content="百度地图API自定义地图，帮助用户在可视化操作下生成百度地图" />
+    <title>百度地图API自定义地图</title>
+    <!--引用百度地图API-->
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .BMap_center {
+        height:60px;
+        }
+    </style>
+    <!--<script type="text/javascript" src="https://api.map.baidu.com/api?key=&v=1.1&services=true"></script>-->
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&amp;ak=OTtdExgLqygGwfi0Q8D3VMkYDzkBMEWW&amp;s=1"></script><!--解决https下不生效-->
+    <!--<script src="/ueditor/dialogs/map/getscript.js" type="text/javascript"></script>-->
+    <script src="../../..//xiniu/js/jq/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://api.map.baidu.com/res/11/bmap.css" />
+    <script>
+        var widths = document.documentElement.clientWidth;
+        if (widths > 768) {
+            //跟随父页面缩放
+            var zoom = $("html", parent.document).css("zoom");
+            var transform = $("html").css("transform");
+            if (!zoom) {
+                $("html").css("transform", transform)
+            } else {
+                $("html").css("zoom", zoom)
+            }
+        }
+    </script>
+</head>
+
+<body onload="initMap();">
+    <!--百度地图容器-->
+    <div style="width:697px;height:550px;border:#ccc solid 1px;" id="dituContent"></div>
+</body>
+<script type="text/javascript">
+    function getParam(name) {
+        return location.href.match(new RegExp('[?&#]' + name + '=([^?&#]+)', 'i')) ? RegExp.$1 : '';
+    }
+    var address = "默认地址";
+    var tel = "我的电话";
+    var map, marker;
+    var centerParam = unescape(getParam('center'));
+    var zoomParam = unescape(getParam('zoom'));
+    var widthParam = unescape(getParam('width'));
+    var heightParam = unescape(getParam('height'));
+    var markersParam = unescape(getParam('markers'));
+    var markerStylesParam = unescape(getParam('markerStyles'));
+    var markerArr = getParam('markerArr');
+
+    //创建和初始化地图函数：
+    function initMap() {
+        // [FF]切换模式后报错
+        if (!window.BMap) {
+            return;
+        }
+        var dituContent = document.getElementById('dituContent');
+
+        if (widthParam == "") {
+            dituContent.style.width = widthParam = "99%";
+        } else {
+            dituContent.style.width = widthParam.indexOf("%") > 0 ? widthParam : widthParam + 'px';
+        }
+
+        if (heightParam == "") {
+            dituContent.style.height = "400px";
+        } else {
+            dituContent.style.height = heightParam.indexOf("%") > 0 ? heightParam : heightParam + 'px';
+        }
+
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+
+        // 创建标注
+        var markerArrjson = JSON.parse(decodeURI(markerArr));
+        for (var i = 0; i < markerArrjson.length; i++) {
+            var p0 = markerArrjson[i].point.split(",")[0];
+            var p1 = markerArrjson[i].point.split(",")[1];
+
+            var point = new BMap.Point(p0, p1);
+            marker = new BMap.Marker(point);
+            //marker.enableDragging();
+            var icon = marker.getIcon(); marker.setShadow(icon);
+            map.addOverlay(marker); // 将标注添加到地图中
+            if ((markerArrjson[i].address != "" && markerArrjson[i].address != address) || (markerArrjson[i].tel != "" && markerArrjson[i].tel != tel)) {
+                addInfoWindow(marker, markerArrjson[i]);
+            }
+
+        }
+
+        try {
+            if (parent.editor && parent.document.body.contentEditable == "true") { //在编辑状态下
+                setMapListener(); //地图改变修改外层的iframe标签src属性
+            }
+        } catch (e) { }
+    }
+
+    // 添加信息窗口
+    function addInfoWindow(marker, op) {
+        var show = function (result) {
+            var Address;
+            var Tel;
+            if (result < 0) {
+                Address = "地址";
+                Tel = "电话";
+            }
+
+			var width = 30;
+			
+            switch (result) {
+                case 0:
+                    Address = "地址";
+                    Tel = "电话";
+                    break;
+                case 1:
+					width = 60;
+                    Address = "Address";
+                    Tel = "Tel";
+                    break;
+                case 2:
+                    Address = "住所";
+                    Tel = "電話";
+                    break;
+                case 3:
+                    Address = "주소";
+                    Tel = "전화";
+                    break;
+                case 4:
+					width = 60;
+                    Address = "Adresse";
+                    Tel = "Téléphone";
+                    break;
+                case 5:
+					width = 40;
+                    Address = "عنوان";
+                    Tel = "هاتف";
+                    break;
+                case 6:
+					width = 60;
+                    Address = "Endereço";
+                    Tel = "Telefone";
+                    break;
+                case 7:
+					width = 60;
+                    Address = "Dirección";
+                    Tel = "Teléfono";
+                    break;
+                case 8:
+					width = 35;
+                    Address = "адрес";
+                    Tel = "телефон";
+                    break;
+                case 9:
+					width = 60;
+                    Address = "Adresse";
+                    Tel = "Telefon";
+                    break;
+                case 10:
+                    Address = "地址";
+                    Tel = "電話";
+                    break;
+                case 11:
+                    Address = "ที่อยู่";
+                    Tel = "โทรศัพท์";
+                    break;
+                default:
+                    Address = "地址";
+                    Tel = "电话";
+                    break;
+            }
+            //pop弹窗标题
+            var title = '<div style="font-weight:bold;color:#CE5521;font-size:14px">' + op.name + '</div>';
+            //pop弹窗信息
+            var html = [];
+            html.push('<table cellspacing="0" style="table-layout:fixed;width:100%;font:12px arial,simsun,sans-serif;background-color:white"><tbody>');
+            html.push('<tr>');
+            html.push('<td style="vertical-align:top;line-height:16px;width:' + width + 'px;white-space:nowrap;word-break:keep-all">' + Address + ':</td>');
+            html.push('<td style="vertical-align:top;line-height:16px">' + op.address + '</td>');
+            html.push('</tr>');
+            if (op.tel) {
+                html.push('<tr>');
+                html.push('<td style="vertical-align:top;line-height:16px;width:30px;white-space:nowrap;word-break:keep-all;float:right">' + Tel + ':</td>');
+                html.push('<td style="vertical-align:top;line-height:16px">' + op.tel + '</td>');
+                html.push('</tr>');
+            }
+            html.push('</tbody></table>');
+
+            var infoWindow = new BMap.InfoWindow(html.join(""), { title: title, width: 280 });
+            marker.openInfoWindow(infoWindow, marker.point);
+            var label = new BMap.Label(op.index, { offset: new BMap.Size(20, -10) });
+            label.setStyle({ display: "none" });
+            marker.setLabel(label);
+
+            var openInfoWinFun = function () {
+                marker.openInfoWindow(infoWindow, marker);
+            };
+            marker.addEventListener("click", openInfoWinFun);
+
+            return openInfoWinFun;
+        }
+
+        var lan = 0;
+
+        try {
+            lan = typeof window.parent.$ == "undefined" ? "" : window.parent.$("html").attr("lang");
+        } catch (er) {
+            console.log("地图来源不正确,非本站域名");
+        }
+
+        if (lan) {
+            switch (lan) {
+                case "en":
+                    lan = 1; break;
+                case "js":
+                    lan = 2; break;
+                case "ko":
+                    lan = 3; break;
+                case "fr":
+                    lan = 4; break;
+                case "ar":
+                    lan = 5; break;
+                case "pt":
+                    lan = 6; break;
+                case "es":
+                    lan = 7; break;
+                case "ru":
+                    lan = 8; break;
+                case "de":
+                    lan = 9; break;
+                case "tw":
+                    lan = 10; break;
+                case "th":
+                    lan = 11; break;
+                default:
+                    lan = 0; break;
+            }
+
+            show(lan);
+        } else {
+            //获取站点语言
+            $.get("/Admin/Others/ToolToUrl.aspx?language=language", function (data) {
+                show(parseInt(data));
+            });
+        }
+    }
+
+    //创建地图函数：
+    function createMap() {
+        map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+        var centerArr = centerParam.split(',');
+        var point = new BMap.Point(parseFloat(centerArr[0]), parseFloat(centerArr[1]));//定义一个中心点坐标
+        map.centerAndZoom(point, parseInt(zoomParam));//设定地图的中心点和坐标并将地图显示在地图容器中
+    }
+
+    //地图事件设置函数：
+    function setMapEvent() {
+        //map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard();//启用键盘上下左右键移动地图
+    }
+
+    //地图控件添加函数：
+    function addMapControl() {
+        //向地图中添加缩放控件
+        var ctrl_nav = new BMap.NavigationControl({ anchor: BMAP_ANCHOR_TOP_LEFT, type: BMAP_NAVIGATION_CONTROL_LARGE });
+        map.addControl(ctrl_nav);
+        //向地图中添加缩略图控件
+        var ctrl_ove = new BMap.OverviewMapControl({ anchor: BMAP_ANCHOR_BOTTOM_RIGHT, isOpen: true });
+        map.addControl(ctrl_ove);
+        //向地图中添加比例尺控件
+        var ctrl_sca = new BMap.ScaleControl({ anchor: BMAP_ANCHOR_BOTTOM_LEFT });
+        map.addControl(ctrl_sca);
+    }
+
+    function setMapListener() {
+        var editor = parent.editor, containerIframe,
+            iframes = parent.document.getElementsByTagName('iframe');
+        for (var key in iframes) {
+            if (iframes[key].contentWindow == window) {
+                containerIframe = iframes[key];
+                break;
+            }
+        }
+        if (containerIframe) {
+            map.addEventListener('moveend', mapListenerHandler);
+            map.addEventListener('zoomend', mapListenerHandler);
+            marker.addEventListener('dragend', mapListenerHandler);
+        }
+
+        function mapListenerHandler() {
+            var zoom = map.getZoom(),
+                center = map.getCenter(),
+                marker = window.marker.getPosition();
+            containerIframe.src = containerIframe.src.
+                replace(new RegExp('([?#&])center=([^?#&]+)', 'i'), '$1center=' + center.lng + ',' + center.lat).
+                replace(new RegExp('([?#&])markers=([^?#&]+)', 'i'), '$1markers=' + marker.lng + ',' + marker.lat).
+                replace(new RegExp('([?#&])zoom=([^?#&]+)', 'i'), '$1zoom=' + zoom);
+            editor.fireEvent('saveScene');
+        }
+    }
+  
+    function setBMap_center() {
+        var allBox = document.getElementsByClassName("BMap_center"),
+            i, len;
+        for (i = 0, l = allBox.length; i < l; i++) {
+            console.log("执行：" + i)
+            allBox[i].style.height = "60px";
+        }
+    }
+    setTimeout(setBMap_center,1000)
+</script>
+
+<!-- Mirrored from www.genew.com.cn/ueditor/dialogs/map/show.htm?center=113.95314744575298,22.537560022740102 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 Dec 2024 06:51:33 GMT -->
+</html>

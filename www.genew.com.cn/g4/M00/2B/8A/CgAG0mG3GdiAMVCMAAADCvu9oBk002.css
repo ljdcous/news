@@ -1,0 +1,33 @@
+﻿#ic5e13fbb78f2a6d6 img,
+#ie5a46aa28f3ca4ca img,
+#i68403e48b0fa0d77 img{
+    position: relative;
+    height: auto !important;
+    top: 0;
+    /*transition:all 0.5s;*/
+}
+
+.p1700m364a94ede0bb1c8c,
+.p1700m992ec64257606579,
+.p1700m67a7e0c6acf15a68{
+    position: absolute !important;
+    z-index: 9;
+}
+
+.p1700me7c185aa4c844b3f,
+.p1700me88452dcfd3954cd,
+.p1700m32132b7826166a55{
+    opacity:0;
+}
+
+#ic5e13fbb78f2a6d6 .data_col img:hover,
+#ie5a46aa28f3ca4ca .data_col img:hover,
+#i68403e48b0fa0d77 .data_col img:hover{
+    /*top: -200px;*/opacity: 0;
+}
+
+#ic5e13fbb78f2a6d6 .data_col:hover .p1700me7c185aa4c844b3f,
+#ie5a46aa28f3ca4ca .data_col:hover .p1700me88452dcfd3954cd,
+#i68403e48b0fa0d77 .data_col:hover .p1700m32132b7826166a55{
+    opacity: 1;
+}

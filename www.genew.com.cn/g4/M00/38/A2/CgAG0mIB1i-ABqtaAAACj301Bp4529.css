@@ -1,0 +1,29 @@
+﻿@media only screen and (min-width:769px){
+.xg_img.p1722mf1722-0a41984a775ac3020 {
+    display: none;
+    position: absolute;
+    bottom: 50px;
+    top: auto;
+    left: 50%;
+    transform: translateX(-66%);
+}
+div#if172203da5ff31417214fc>div>div{
+    cursor: pointer;
+}
+div#if172203da5ff31417214fc>div>div:hover .p1722mf1722-0a41984a775ac3020{
+    display: block;
+}
+.xg_banner_img img {
+    margin: 0 !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    left: 0 !important;
+}
+.xg_dropdownlist {
+    width: 100% !important;
+    min-width: 100% !important;
+    margin-left: 0 !important;
+    left: 0;
+}
+
+}

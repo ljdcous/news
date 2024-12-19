@@ -1,0 +1,17 @@
+#i0e6a8fa91623c998 .data_col,
+#i0e6a8fa91623c998 .data_col .p1797m360e2abdfb3ff1f7{
+    transition: all 0.5s;
+}
+
+#i0e6a8fa91623c998 .data_col:hover{
+    background: #f0f0f0;
+    box-shadow: 0 0 7px 0px #bbb;
+}
+
+#i0e6a8fa91623c998 .data_col:hover .p1797m423566a6e45650c3{
+    color:#e8382c;
+}
+
+#i0e6a8fa91623c998 .data_col:hover .p1797m360e2abdfb3ff1f7{
+    opacity:1;
+}

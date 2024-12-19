@@ -1,0 +1,24 @@
+#i79defebc64fcc334 .data_col,
+#i79defebc64fcc334 .data_col .p1786md7e7b6e64e4889b3,
+#i79defebc64fcc334 .data_col .p1786m143e3ed6189d58ce,
+#i79defebc64fcc334 .data_col .p1792m143e3ed6189d58ce,
+#i79defebc64fcc334 .data_col .p1789m143e3ed6189d58ce{
+    transition: all 0.5s;
+}
+
+#i79defebc64fcc334 .data_col:hover {
+    background: #f0f0f0;
+    box-shadow: 0 0 7px 0px #bbb;
+}
+
+#i79defebc64fcc334 .data_col:hover .p1786md7e7b6e64e4889b3,
+#i79defebc64fcc334 .data_col:hover .p1792md7e7b6e64e4889b3,
+#i79defebc64fcc334 .data_col:hover .p1789md7e7b6e64e4889b3{
+    color:#e8382c;
+}
+
+#i79defebc64fcc334 .data_col:hover .p1786m143e3ed6189d58ce,
+#i79defebc64fcc334 .data_col:hover .p1792m143e3ed6189d58ce,
+#i79defebc64fcc334 .data_col:hover .p1789m143e3ed6189d58ce{
+    opacity:1;
+}

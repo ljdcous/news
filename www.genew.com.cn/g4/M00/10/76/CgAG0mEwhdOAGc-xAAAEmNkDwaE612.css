@@ -1,0 +1,39 @@
+#if17210d46af989fd47cef0 .xg_menuLi1[data-nid="26"] {
+    border-bottom: 3px solid rgb(232, 56, 44);
+}
+li.xg_tMenuLi1[data-tid="243"] {
+    border-bottom: 2px solid rgb(232, 56, 44);
+}
+.p1793m6a139cf535757323 {
+    position: absolute !important;
+    z-index: 1;
+    left: 0 !important;
+}
+
+#i13f9c52147de02bc .data_col>.row {
+    position: relative;
+    z-index: 3;
+}
+#i13f9c52147de02bc .data_col>.row .p1793md08b5c995e0c2562{
+    float: right;
+    transition: all 0.5s;
+    /* background:#fff; */
+}
+
+#i13f9c52147de02bc .data_col:nth-child(2n) .p1793m6a139cf535757323{right: 0 !important;left: auto !important;}
+#i13f9c52147de02bc .data_col:nth-child(2n)>.row .p1793md08b5c995e0c2562{
+    float: left;
+}
+
+#i13f9c52147de02bc .data_col>.row .p1793md08b5c995e0c2562:hover{
+    /* background:#da251d; */
+    transition: all 0.5s;
+    color:#fff;
+}
+/*
+#i13f9c52147de02bc .data_col>.row  .p1793md08b5c995e0c2562:hover .p1709mbd47d9a1144eab13,
+#i13f9c52147de02bc .data_col>.row  .p1793md08b5c995e0c2562:hover .p1709mf5b7b4545a4e8399,
+#i13f9c52147de02bc .data_col>.row  .p1793md08b5c995e0c2562:hover .p1709m93dd51c7be067a52{
+    color:#fff;
+}
+*/

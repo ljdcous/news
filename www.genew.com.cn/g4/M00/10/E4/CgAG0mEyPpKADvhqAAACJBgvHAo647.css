@@ -1,0 +1,23 @@
+﻿/*#cf1721-000010001>.row{overflow:hidden;}*/
+#cf1721-000010001>.row .p1721mf1721-018264519e7c0cafc{overflow:hidden;}
+#if17210d46af989fd47cef0 {}
+#if17210d46af989fd47cef0 .xg_menuLi1{
+    position: initial;
+}
+
+#if17210d46af989fd47cef0 .xg_menuUl2{
+    position: absolute;
+    width: 100%;
+    left:0;
+    text-align: center;
+    top: 80px;
+    margin-top: 0;
+}
+
+#if17210d46af989fd47cef0 .xg_menuUl2 .xg_menuLi2{
+    display:inline-block;
+}
+
+#if17210d46af989fd47cef0 .xg_menuLi1[data-nid="26"] .xg_menuUl2{
+	display:none;
+}

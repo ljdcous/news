@@ -1,0 +1,33 @@
+﻿.p1709m932c327ace66eb4e a:before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    bottom: 0;
+    left: 0;
+    transition: all 0.5s;
+    background: linear-gradient(rgba(0,0,0,0) 0%,rgba(0,0,0,0.3) 70%);
+    z-index: 2;
+}
+#i84eced666ece3709 .data_col{overflow:hidden;}
+#i84eced666ece3709 .data_col>.row{
+    position:absolute !important;
+    transition: all 0.5s;
+    bottom: -30px;
+    z-index: 3;
+}
+#i84eced666ece3709 .data_col:hover>.row{
+    bottom: 10px;
+}
+
+
+#i84eced666ece3709 .data_col:hover .p1709m932c327ace66eb4e a:before{
+    height: 100%;
+}
+
+.p1709m932c327ace66eb4e img{
+    transition: all 0.5s;
+}
+#i84eced666ece3709 .data_col:hover .p1709m932c327ace66eb4e img{
+    transform: scale(1.1);
+}
