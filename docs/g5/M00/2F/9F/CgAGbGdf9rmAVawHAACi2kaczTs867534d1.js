@@ -251,9 +251,9 @@ $(main);})($('#cca4db8f16f7f08c1'),configca4db8f16f7f08c1);
  if (!util.inToolBox()) {
 //5g通信
 $("li[data-tid='148']").on("click",function(){
-    var url="/Article_complex.aspx?nid=26"
+    var url="./Article_complex.aspx?nid=26"
    /* if (util.inToolBox()) {
-      url="/AI-Design"+url;
+      url="./AI-Design"+url;
     }*/
     util.openUrl(url, "_self");	
     return false;
@@ -261,9 +261,9 @@ $("li[data-tid='148']").on("click",function(){
 
 //应急管理
 $("li[data-tid='13']").on("click",function(){
-    var url="/help_complex.aspx?nid=30"
+    var url="./help_complex.aspx?nid=30"
    /* if (util.inToolBox()) {
-      url="/AI-Design"+url;
+      url="./AI-Design"+url;
     }*/
     util.openUrl(url, "_self");	
     return false;
@@ -271,9 +271,9 @@ $("li[data-tid='13']").on("click",function(){
 
 //智慧矿山
 $("li[data-tid='373']").on("click",function(){
-    var url="/enrollment_complex.aspx?nid=27"
+    var url="./enrollment_complex.aspx?nid=27"
   /*  if (util.inToolBox()) {
-      url="/AI-Design"+url;
+      url="./AI-Design"+url;
     }*/
     util.openUrl(url, "_self");	
     return false;
@@ -281,18 +281,18 @@ $("li[data-tid='373']").on("click",function(){
 
 //智慧城市
 $("li[data-tid='374']").on("click",function(){
-    var url="/solution_complex.aspx?nid=25"
+    var url="./solution_complex.aspx?nid=25"
   /*  if (util.inToolBox()) {
-      url="/AI-Design"+url;
+      url="./AI-Design"+url;
     }*/
     util.openUrl(url, "_self");	
     return false;
 })
 //智慧光网
 $("li[data-tid='375']").on("click",function(){
-    var url="/contact_complex.aspx?nid=7"
+    var url="./contact_complex.aspx?nid=7"
    /* if (util.inToolBox()) {
-      url="/AI-Design"+url;
+      url="./AI-Design"+url;
     }*/
     util.openUrl(url, "_self");	
     return false;
